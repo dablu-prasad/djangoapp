@@ -31,5 +31,6 @@ urlpatterns = [
     path('index2/',views.index2),
     path('index3/',views.index3),
     path('emp/',views.emp),
-    path('pdf/',views.getpdf)
+    path('pdf/',views.getpdf),
+    path('mail/',views.mail)
 ]

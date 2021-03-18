@@ -2,11 +2,13 @@ import datetime
 from django.template import loader
 from reportlab.pdfgen import canvas
 import myapp
+from djangoapp import settings
 from myapp.functions.function import handle_uploaded_file
 from myapp import form
 from myapp.form import EmpForm, EmployeeForm
 from django.shortcuts import render, redirect
 from myapp.form import StudentForm
+from django.core.mail import send_mail
 
 # Create your views here.
 from django.http import HttpResponse, HttpResponseNotFound
@@ -92,3 +94,14 @@ def getpdf(request):
         p.showPage()
         p.save()
         return response
+
+def mail(request):
+    subject="Greetings"
+    msg="Congratulation for your success"
+    to ="dabluprasad201112@gmail.com"
+    res=send_mail(subject,msg,settings.EMAIL_HOST_USER,[to])
+    if(res==1):
+        msg="Mail Sent Successfully"
+    else:
+        msg="Mail could not sent"
+    return HttpResponse(msg)
